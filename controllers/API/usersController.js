@@ -50,4 +50,40 @@ const newUser = (req, res) => {
     }
 }
 
-module.exports = { getUsers, getUser, newUser };
+const updateUser = (req, res) => {
+
+        const { userId } = req.params;
+        const { rolId, nombreUsuario, apellidoUsuario, fechaNacimiento, localidad, provinciaId, email, pass } = req.body;
+
+        try {
+            db.query('UPDATE usuarios SET rol_id = ?, nombre = ?, apellido = ?, fechaNacimiento = ?, localidad = ?, provincia_id = ?, email = ?, contrasena = ? WHERE id = ?',
+                [rolId, nombreUsuario, apellidoUsuario, fechaNacimiento, localidad, provinciaId, email, pass, userId],
+                (err, rows) => {
+                    if(err)
+                        return res.status(400).send(err);
+                    return res.status(200).json({resultado: rows});
+                }
+        );
+        } catch (error) {
+            res.status(500).send(error);
+        }
+}
+
+const deleteUser = (req, res) => {
+
+    const { userId } = req.params;
+
+    try {
+        db.query('DELETE FROM usuarios WHERE id = ?', 
+            [userId], (err, rows) => {
+                if(err)
+                    return res.status(400).send(err);
+                return res.status(200).json({resultado: rows});
+            }
+        );
+    } catch (error) {
+        res.status(500).send(error);
+    }
+}
+
+module.exports = { getUsers, getUser, newUser, deleteUser, updateUser };
