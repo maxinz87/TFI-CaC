@@ -1,11 +1,11 @@
 const db = require('../../db/conexion');
 
-const getArticlesByCategory = (req, res) => {
+const getLatestArticlesByCategory = (req, res) => {
 
     const { categoria } =  req.params;
 
     try {
-        db.query('SELECT * FROM articulos WHERE categoria_id = ?;', [categoria], (err, rows) => {
+        db.query('SELECT articulos.id, redactor_id, nombre, apellido, fecha_creacion, img, titulo, epigrafe, textoPortada, textoCompleto, tamano_articulo, posicion_articulo, categoria_id FROM articulos INNER JOIN usuarios ON articulos.redactor_id = usuarios.id WHERE categoria_id = ? ORDER BY fecha_creacion DESC;', [categoria], (err, rows) => {
             if(err)
                 return res.status(400).send(err);
             return res.status(200).json(rows);
@@ -73,4 +73,4 @@ const deleteArticleById = (req, res) => {
         }
 }
 
-module.exports = { getArticlesByCategory, modifyArticleById, createNewArticle, deleteArticleById };
+module.exports = { getLatestArticlesByCategory, modifyArticleById, createNewArticle, deleteArticleById };

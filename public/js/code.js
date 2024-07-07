@@ -17,7 +17,11 @@ function renderArticles(article, category_id){
             {
                 const economyArticles_Container = document.querySelector('.economy-articles-container');
                 const economyArticleContainer = document.createElement('article');
-                economyArticleContainer.classList.add('article-card');
+
+                if(article.tamano_articulo !== "")
+                    economyArticleContainer.classList.add(`article-card-${article.tamano_articulo}`);
+                else
+                    economyArticleContainer.classList.add(`article-card`);
             
                 const imgArticleContainer = document.createElement('div');
                 imgArticleContainer.classList.add('containerImg');
@@ -28,10 +32,16 @@ function renderArticles(article, category_id){
             
                 const titleArticle = document.createElement('h3');
                 titleArticle.textContent = article.titulo;
+
+                const dataWriterContainer = document.createElement('div');
+                const writerDateArticle = document.createElement('p');
+                writerDateArticle.textContent = article.nombre + " " + article.apellido + ` | ` + article.fecha_creacion.substring(0,10);
+                dataWriterContainer.append(writerDateArticle);
+
                 const textArticle = document.createElement('p');
                 textArticle.textContent = article.textoPortada;
             
-                economyArticleContainer.append(imgArticleContainer,titleArticle,textArticle);
+                economyArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle);
             
                 economyArticles_Container.append(economyArticleContainer);
             }
@@ -52,10 +62,16 @@ function renderArticles(article, category_id){
             
                 const titleArticle = document.createElement('h3');
                 titleArticle.textContent = article.titulo;
+
+                const dataWriterContainer = document.createElement('div');
+                const writerDateArticle = document.createElement('p');
+                writerDateArticle.textContent = article.nombre + " " + article.apellido + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                dataWriterContainer.append(writerDateArticle);
+
                 const textArticle = document.createElement('p');
                 textArticle.textContent = article.textoPortada;
             
-                sportsArticleContainer.append(imgArticleContainer,titleArticle,textArticle);
+                sportsArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle);
             
                 sportsArticles_Container.append(sportsArticleContainer);
             }
@@ -75,10 +91,16 @@ function renderArticles(article, category_id){
             
                 const titleArticle = document.createElement('h3');
                 titleArticle.textContent = article.titulo;
+                
+                const dataWriterContainer = document.createElement('div');
+                const writerDateArticle = document.createElement('p');
+                writerDateArticle.textContent = article.nombre + " " + article.apellido + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                dataWriterContainer.append(writerDateArticle);
+
                 const textArticle = document.createElement('p');
                 textArticle.textContent = article.textoPortada;
             
-                techArticleContainer.append(imgArticleContainer,titleArticle,textArticle);
+                techArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle);
             
                 techArticles_Container.append(techArticleContainer);
             }
