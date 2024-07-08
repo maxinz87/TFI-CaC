@@ -1,5 +1,13 @@
 let economyNewsResponse = [];
 
+Object.defineProperty(String.prototype, 'capitalizarPrimeraLetra', {
+    value: function () {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    },
+    writable: true, // puede sobreescribirse
+    configurable: true // puede borrarse
+});
+
 async function getNewsByCategory(categoria){
     newsResponse = await fetch(`http://localhost:2408/api/articulos_por_id/${categoria}`);
     newsArray = await newsResponse.json();
@@ -35,7 +43,8 @@ function renderArticles(article, category_id){
 
                 const dataWriterContainer = document.createElement('div');
                 const writerDateArticle = document.createElement('p');
-                writerDateArticle.textContent = article.nombre + " " + article.apellido + ` | ` + article.fecha_creacion.substring(0,10);
+                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` | ` + article.fecha_creacion.substring(0,10).split('-').reverse().join('/');
+                writerDateArticle.classList.add('writerDateFormat');
                 dataWriterContainer.append(writerDateArticle);
 
                 const textArticle = document.createElement('p');
@@ -65,7 +74,8 @@ function renderArticles(article, category_id){
 
                 const dataWriterContainer = document.createElement('div');
                 const writerDateArticle = document.createElement('p');
-                writerDateArticle.textContent = article.nombre + " " + article.apellido + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                writerDateArticle.classList.add('writerDateFormat');
                 dataWriterContainer.append(writerDateArticle);
 
                 const textArticle = document.createElement('p');
@@ -94,7 +104,8 @@ function renderArticles(article, category_id){
                 
                 const dataWriterContainer = document.createElement('div');
                 const writerDateArticle = document.createElement('p');
-                writerDateArticle.textContent = article.nombre + " " + article.apellido + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                writerDateArticle.classList.add('writerDateFormat');
                 dataWriterContainer.append(writerDateArticle);
 
                 const textArticle = document.createElement('p');

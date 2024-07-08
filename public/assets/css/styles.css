@@ -64,29 +64,67 @@ main h3 {
 /* article-card */
 
 .article-card-xl {
-    grid-column-start: span 3;
     overflow: hidden;
     height: auto;
-    background-color: #343638;
     border-radius: 10px;
+    background-image: linear-gradient(90deg, rgba(207, 206, 206, 0.2) 0%, rgb(13, 13, 13, 0.5) 100%);
+    z-index: 1;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.article-card-xl h3, p {
+    font-size: 2rem;
+    margin: 10px;
 }
 
 .article-card-m {
-    grid-column-start: span 2;
     overflow: hidden;
     height: auto;
-    background-color: #343638;
     border-radius: 10px;
+    background-image: linear-gradient(90deg, rgba(207, 206, 206, 0.2) 0%, rgb(13, 13, 13, 0.5) 100%);
+    z-index: 1;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.article-card-m h3, p {
+    font-size: 1.5rem;
+    margin: 10px;
 }
 
 .article-card {
     overflow: hidden;
     height: auto;
-    background-color: #343638;
     border-radius: 10px;
+    background-image: linear-gradient(90deg, rgba(207, 206, 206, 0.2) 0%, rgb(13, 13, 13, 0.5) 100%);
+    z-index: 1;
+    position: relative;
+    margin-bottom: 20px;
 }
 
-.article-card h4 {
+.article-card::before,
+.article-card-xl::before,
+.article-card-m::before {
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  transition: opacity 0.5s linear;
+  opacity: 0;
+  background-image: linear-gradient(90deg, rgba(13, 13, 13, 0.5) 0%, rgb(207, 206, 206, 0.2) 100%);
+}
+
+.article-card:hover::before,
+.article-card-xl:hover::before,
+.article-card-m:hover::before {
+  opacity: 1;
+}
+
+.article-card h3, p {
     font-size: 1rem;
     margin: 10px;
 }
@@ -94,6 +132,11 @@ main h3 {
 .containerImg{
   overflow: hidden;
   border-radius: 10px;
+}
+
+.writerDateFormat {
+    font-size: smaller;
+    font-family: 'Arial';
 }
 
 @media screen and (max-width: 545px){
@@ -119,5 +162,12 @@ main h3 {
     .articles-container img {
         max-height: 240px;
     }
+
+    .article-card-xl {
+        grid-column-start: span 3;
+    }
+
+    .article-card-m {
+        grid-column-start: span 2;
 }
 
