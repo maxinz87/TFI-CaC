@@ -1,5 +1,16 @@
 let economyNewsResponse = [];
 
+window.addEventListener("load", async (event) => {
+
+    const loaderElement = document.querySelector('.loader');
+
+    await populateArticles(3);
+    await populateArticles(4);
+    await populateArticles(5);
+
+    loaderElement.classList.add('loader-hidden');
+  });
+
 Object.defineProperty(String.prototype, 'capitalizarPrimeraLetra', {
     value: function () {
         return this.charAt(0).toUpperCase() + this.slice(1);
@@ -9,7 +20,7 @@ Object.defineProperty(String.prototype, 'capitalizarPrimeraLetra', {
 });
 
 async function getNewsByCategory(categoria){
-    newsResponse = await fetch(`http://localhost:2408/api/articulos_por_id/${categoria}`);
+    newsResponse = await fetch(`http://localhost:2408/api/articulos/${categoria}`);
     newsArray = await newsResponse.json();
     return newsArray;
 }
@@ -49,8 +60,12 @@ function renderArticles(article, category_id){
 
                 const textArticle = document.createElement('p');
                 textArticle.textContent = article.textoPortada;
+
+                const articleLink = document.createElement('a');
+                articleLink.classList.add('article-link');
+                articleLink.setAttribute('href','/public/articulo.html?articleId=' + article.id);
             
-                economyArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle);
+                economyArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle,articleLink);
             
                 economyArticles_Container.append(economyArticleContainer);
             }
@@ -137,7 +152,3 @@ async function populateArticles(category){
         4 - Deportes;
         5 - Tecnología
 */
-
-populateArticles(3);
-populateArticles(4);
-populateArticles(5);

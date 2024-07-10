@@ -16,6 +16,24 @@ const getLatestArticlesByCategory = (req, res) => {
 
 }
 
+const getArticleById = (req, res) => {
+
+    const {articuloId} = req.params;
+    
+    try {
+        db.query('SELECT articulos.id, redactor_id, nombre, apellido, fecha_creacion, img, titulo, epigrafe, textoPortada, textoCompleto, categoria_id FROM articulos INNER JOIN usuarios ON articulos.redactor_id = usuarios.id WHERE articulos.id = ?',
+                [articuloId],
+                (err, rows) => {
+                    if(err)
+                        return res.status(400).send(err);
+                    return res.status(200).json(rows);  
+                }
+        );
+    } catch (error) {
+        return res.status(500).send(err.message);
+    }
+}
+
 const createNewArticle = (req, res) => {
 
     const { redactorId, img, titulo, epigrafe, textoPortada, textoCompleto, tamano_articulo, posicion_articulo, categoriaId } = req.body;
@@ -73,4 +91,4 @@ const deleteArticleById = (req, res) => {
         }
 }
 
-module.exports = { getLatestArticlesByCategory, modifyArticleById, createNewArticle, deleteArticleById };
+module.exports = { getLatestArticlesByCategory, modifyArticleById, createNewArticle, deleteArticleById, getArticleById };

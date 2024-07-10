@@ -11,6 +11,95 @@ body {
   padding: 0;
 }
 
+
+/* HTML: <div class="loader"></div> */
+.loaderElement {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #514b82;
+  -webkit-mask: radial-gradient(circle closest-side at 50% 40%,#0000 94%, #000);
+  transform-origin: 50% 40%;
+  animation: l25 1s infinite linear;
+}
+@keyframes l25 {
+  100% {transform: rotate(1turn)}
+}
+
+.loader{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  transition: opacity 0.75s, visibility 0.75s;
+  background-color: #0d0d0d;
+}
+
+.loader-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Header */
+
+.navbar {
+    background-color: #353434 !important;
+  }
+  
+  .container-fluid {
+    padding-left: calc(var(--bs-gutter-x) * 2) !important;
+    padding-right: calc(var(--bs-gutter-x) * 2) !important;
+  }
+
+  .img-brand {
+    max-width: 120px;
+    max-height: 80px;
+  }
+
+  .navbar a {
+    color: white !important;
+  }
+  
+  .navbar-toggler {
+    color: white !important;
+    border: 2px solid rgb(190, 190, 190) !important;
+  }
+  
+  .navbar-nav {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    background-color: rgb(255, 255, 255);
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    transition: transform 0.75s;
+    transform-origin: bottom right;
+    transform: scaleX(0);
+  }
+  
+  .nav-link:hover::after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
+  }
+
 /* Main */
 
 main {
@@ -139,6 +228,15 @@ main h3 {
     font-family: 'Arial';
 }
 
+.article-link {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top:0;
+    bottom:0;
+}
+
+
 @media screen and (max-width: 545px){
 
 }
@@ -152,7 +250,23 @@ main h3 {
 }
 
 @media screen and (max-width: 768px){
+    .img-brand {
+        height: 60px;
+        padding-top: 5px;
+    }
+}
 
+@media screen and (min-width: 768px){
+    .articles-container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .article-card-xl {
+        grid-column-start: span 2;
+    }
+
+    .article-card-m {
+        grid-column-start: span 2; 
+    }
 }
 
 @media screen and (min-width: 1366px){
@@ -168,6 +282,9 @@ main h3 {
     }
 
     .article-card-m {
-        grid-column-start: span 2;
-}
+        grid-column-start: span 2; 
+    }
 
+
+
+}
