@@ -32,6 +32,20 @@ const getUser = (req, res) => {
     }
 }
 
+const getAllWriters = (req, res) => {
+    try {
+        
+        db.query('SELECT * FROM usuarios WHERE rol_id = 2408', (err,rows) => {
+            if(err)
+                return res.status(400).json( {msg: err} );
+            return res.status(200).json(rows);
+        });
+
+    } catch (error) {
+        return res.status(500).send(error);
+    }
+}
+
 const newUser = (req, res) => {
     const {rolId, nombreUsuario, apellidoUsuario, fechaNacimiento, localidad, provinciaId, email, pass} = req.body;
     
@@ -86,4 +100,4 @@ const deleteUser = (req, res) => {
     }
 }
 
-module.exports = { getUsers, getUser, newUser, deleteUser, updateUser };
+module.exports = { getUsers, getUser, newUser, deleteUser, updateUser, getAllWriters };

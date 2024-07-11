@@ -21,7 +21,7 @@ const getArticleById = (req, res) => {
     const {articuloId} = req.params;
     
     try {
-        db.query('SELECT articulos.id, redactor_id, nombre, apellido, fecha_creacion, img, titulo, epigrafe, textoPortada, textoCompleto, categoria_id FROM articulos INNER JOIN usuarios ON articulos.redactor_id = usuarios.id WHERE articulos.id = ?',
+        db.query('SELECT articulos.id, redactor_id, nombre, apellido, fecha_creacion, img, titulo, epigrafe, textoPortada, textoCompleto, tamano_articulo, categoria_id FROM articulos INNER JOIN usuarios ON articulos.redactor_id = usuarios.id WHERE articulos.id = ?',
                 [articuloId],
                 (err, rows) => {
                     if(err)
@@ -57,20 +57,23 @@ const createNewArticle = (req, res) => {
 const modifyArticleById = (req, res) => {
 
     const {articuloId} = req.params;
-    const { img, titulo, epigrafe, textoPortada, textoCompleto, tamano_articulo, posicion_articulo, categoriaId} = req.body;
+
+    console.log(req.body);
+
+    const { img, titulo, textoPortada, tamano_articulo, categoriaId, redactorId} = req.body;
 
     try {
         
-        db.query('UPDATE articulos SET img = ?, titulo = ?, epigrafe = ?, textoPortada = ?, textoCompleto = ?, tamano_articulo = ?, posicion_articulo = ?, categoria_id = ? WHERE id = ?',
-                [img, titulo, epigrafe,textoPortada, textoCompleto, tamano_articulo, posicion_articulo, categoriaId, articuloId],
+        db.query('UPDATE articulos SET img = ?, titulo = ?, textoPortada = ?, tamano_articulo = ?, categoria_id = ?, redactor_id = ? WHERE id = ?',
+                [img, titulo, textoPortada, tamano_articulo, categoriaId, redactorId, articuloId],
                 (err, rows) => {
                     if(err)
-                        return res.status(400).send(err);
+                        return res.status(400).json({ error: err});
                     return res.status(200).json({resultado: rows});
                 }
         );
     } catch (error) {
-        res.status(500).send(error);
+        res.status(500).json({ error : error});
     }
 }
 

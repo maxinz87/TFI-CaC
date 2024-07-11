@@ -75,7 +75,11 @@ function renderArticles(article, category_id){
             {
                 const sportsArticles_Container = document.querySelector('.sports-articles-container');
                 const sportsArticleContainer = document.createElement('article');
-                sportsArticleContainer.classList.add('article-card');
+
+                if(article.tamano_articulo !== "")
+                    sportsArticleContainer.classList.add(`article-card-${article.tamano_articulo}`);
+                else
+                    sportsArticleContainer.classList.add(`article-card`);
             
                 const imgArticleContainer = document.createElement('div');
                 imgArticleContainer.classList.add('containerImg');
@@ -95,8 +99,12 @@ function renderArticles(article, category_id){
 
                 const textArticle = document.createElement('p');
                 textArticle.textContent = article.textoPortada;
+
+                const articleLink = document.createElement('a');
+                articleLink.classList.add('article-link');
+                articleLink.setAttribute('href','/public/articulo.html?articleId=' + article.id);
             
-                sportsArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle);
+                sportsArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle, articleLink);
             
                 sportsArticles_Container.append(sportsArticleContainer);
             }
@@ -105,7 +113,11 @@ function renderArticles(article, category_id){
             {
                 const techArticles_Container = document.querySelector('.tech-articles-container');
                 const techArticleContainer = document.createElement('article');
-                techArticleContainer.classList.add('article-card');
+
+                if(article.tamano_articulo !== "")
+                    techArticleContainer.classList.add(`article-card-${article.tamano_articulo}`);
+                else
+                    techArticleContainer.classList.add(`article-card`);
             
                 const imgArticleContainer = document.createElement('div');
                 imgArticleContainer.classList.add('containerImg');
@@ -125,8 +137,12 @@ function renderArticles(article, category_id){
 
                 const textArticle = document.createElement('p');
                 textArticle.textContent = article.textoPortada;
+
+                const articleLink = document.createElement('a');
+                articleLink.classList.add('article-link');
+                articleLink.setAttribute('href','/public/articulo.html?articleId=' + article.id);
             
-                techArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle);
+                techArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle, articleLink);
             
                 techArticles_Container.append(techArticleContainer);
             }
