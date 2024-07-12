@@ -1,4 +1,4 @@
-const URL_SERVER = 'https://cac-news-deu3ba1ih-maxinz87s-projects.vercel.app/';
+const URL_SERVER = 'https://cac-news.vercel.app/';
 
 
 let articleToModify = undefined;
