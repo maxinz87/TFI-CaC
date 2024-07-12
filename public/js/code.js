@@ -1,3 +1,5 @@
+const URL_SERVER = 'https://cac-news-deu3ba1ih-maxinz87s-projects.vercel.app/';
+
 let economyNewsResponse = [];
 
 window.addEventListener("load", async (event) => {
@@ -20,7 +22,7 @@ Object.defineProperty(String.prototype, 'capitalizarPrimeraLetra', {
 });
 
 async function getNewsByCategory(categoria){
-    newsResponse = await fetch(`http://localhost:2408/api/articulos/${categoria}`);
+    newsResponse = await fetch(`${URL_SERVER}api/articulos/${categoria}`);
     newsArray = await newsResponse.json();
     return newsArray;
 }

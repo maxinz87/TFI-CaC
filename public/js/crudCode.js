@@ -1,3 +1,6 @@
+const URL_SERVER = 'https://cac-news-deu3ba1ih-maxinz87s-projects.vercel.app/';
+
+
 let articleToModify = undefined;
 let categories, writers;
 const articleModifyForm = document.querySelector('#article-modify-form');
@@ -25,18 +28,18 @@ function openTab(evt, cityName) {
   }
 
 async function getCategories(){
-    categoriesResponse = await fetch(`http://localhost:2408/api/categorias`);
+    categoriesResponse = await fetch(`${URL_SERVER}api/categorias`);
     categoriesArray = await categoriesResponse.json();
     return categoriesArray;
 }
 
 async function getWriters(){
-  writersResponse = await fetch(`http://localhost:2408/api/lista_de_usuarios/redactores`);
+  writersResponse = await fetch(`${URL_SERVER}api/lista_de_usuarios/redactores`);
   writersArray = await writersResponse.json();
   return writersArray;
 }
 async function getArticleById(article_id){
-  articleResponse = await fetch(`http://localhost:2408/api/articulo_por_id/${article_id}`);
+  articleResponse = await fetch(`${URL_SERVER}api/articulo_por_id/${article_id}`);
   articleArray = await articleResponse.json();
   return articleArray[0];
 
@@ -137,7 +140,7 @@ async function getArticleById(article_id){
 
   buttonModify.addEventListener("click", async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:2408/api/modificar_articulo_por_id/${articleToModify.id}`, {
+    const res = await fetch(`${URL_SERVER}api/modificar_articulo_por_id/${articleToModify.id}`, {
       method: 'PUT',
       headers: {
         "Content-Type": "application/json"
