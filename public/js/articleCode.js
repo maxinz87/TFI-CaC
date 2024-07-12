@@ -1,4 +1,4 @@
-const URL_SERVER = 'https://cac-news.vercel.app/';
+const URL_SERVER = 'https://cac-news.onrender.com/';
 
 window.onload = async () => {
     const articuloId = new URLSearchParams(window.location.search).get('articleId');

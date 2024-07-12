@@ -1,4 +1,4 @@
-const URL_SERVER = 'https://cac-news.vercel.app/';
+const URL_SERVER = 'https://cac-news.onrender.com/';
 
 let economyNewsResponse = [];
 
