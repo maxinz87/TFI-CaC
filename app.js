@@ -14,7 +14,7 @@ const app = express();
 const apiDir = '/api';
 
 app.use(cors({
-    origin: 'https://cac-news-deu3ba1ih-maxinz87s-projects.vercel.app',
+    origin: '*',
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
