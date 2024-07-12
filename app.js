@@ -14,12 +14,12 @@ const app = express();
 const apiDir = '/api';
 
 app.use(cors({
-    origin: '*',
+    origin: 'https://cac-news-deu3ba1ih-maxinz87s-projects.vercel.app',
     methods: '*',
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   }));
-  
+
 app.use(express.json());
 app.use(express.static('public',{index:false}));
 
