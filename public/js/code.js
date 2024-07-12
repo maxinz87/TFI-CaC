@@ -65,7 +65,7 @@ function renderArticles(article, category_id){
 
                 const articleLink = document.createElement('a');
                 articleLink.classList.add('article-link');
-                articleLink.setAttribute('href','/public/articulo.html?articleId=' + article.id);
+                articleLink.setAttribute('href','/articulo.html?articleId=' + article.id);
             
                 economyArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle,articleLink);
             
@@ -104,7 +104,7 @@ function renderArticles(article, category_id){
 
                 const articleLink = document.createElement('a');
                 articleLink.classList.add('article-link');
-                articleLink.setAttribute('href','/public/articulo.html?articleId=' + article.id);
+                articleLink.setAttribute('href','/articulo.html?articleId=' + article.id);
             
                 sportsArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle, articleLink);
             
@@ -142,7 +142,7 @@ function renderArticles(article, category_id){
 
                 const articleLink = document.createElement('a');
                 articleLink.classList.add('article-link');
-                articleLink.setAttribute('href','/public/articulo.html?articleId=' + article.id);
+                articleLink.setAttribute('href','/articulo.html?articleId=' + article.id);
             
                 techArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle, articleLink);
             
