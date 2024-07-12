@@ -1,4 +1,5 @@
 let articleToModify = undefined;
+let categories, writers;
 const articleModifyForm = document.querySelector('#article-modify-form');
 let spanMessageModify = document.querySelector('#span-message-modify');
 
@@ -47,26 +48,6 @@ async function getArticleById(article_id){
 
     disable_article_modify_controls(true);
 
-    const selectWriters = document.querySelector('#select-redactores');
-    const selectCategories = document.querySelector('#select-categorias');
-
-    const categories = await getCategories();
-    const writers = await getWriters();
-
-    categories.forEach(category => {
-      const newOption = document.createElement('option');
-      newOption.textContent = category.nombre;
-      newOption.setAttribute('value', category.id);
-      selectCategories.append(newOption);
-    });
-
-    writers.forEach(writer => {
-      const newOption = document.createElement('option');
-      newOption.textContent = writer.nombre + " " + writer.apellido;
-      newOption.setAttribute('value', writer.id);
-      selectWriters.append(newOption);
-    });
-
   }
 
   const searchInput = document.querySelector('#search-input');
@@ -86,41 +67,71 @@ async function getArticleById(article_id){
 
   console.log(articleModifyForm.elements);
 
+  async function populateCategoriesAndWriters_select(){
+  const selectWriters = document.querySelector('#select-redactores');
+  const selectCategories = document.querySelector('#select-categorias');
+
+  const categories = await getCategories();
+  const writers = await getWriters();
+
+  categories.forEach(category => {
+    const newOption = document.createElement('option');
+    newOption.textContent = category.nombre;
+    newOption.setAttribute('value', category.id);
+    selectCategories.append(newOption);
+  });
+
+  writers.forEach(writer => {
+    const newOption = document.createElement('option');
+    newOption.textContent = writer.nombre + " " + writer.apellido;
+    newOption.setAttribute('value', writer.id);
+    selectWriters.append(newOption);
+  });
+}
+
   buttonSearch.addEventListener("click", async (e) => {
     e.preventDefault();
     spanMessageModify.classList.remove('spanMessageError','spanMessageOK');
     spanMessageModify.textContent = "";
     if(searchInput.value.trim() !== ""){
-      articleToModify = await getArticleById(searchInput.value);
+      try {
+        articleToModify = await getArticleById(searchInput.value);
 
-      console.log(articleToModify);
-      if(articleToModify)
-        {
-          disable_article_modify_controls(false);
-          articleModifyForm.elements.titulo.value = articleToModify.titulo;
-          articleModifyForm.elements.urlImg.value = articleToModify.img;
-          articleModifyForm.elements.categoria.value = articleToModify.categoria_id;
-          articleModifyForm.elements.redactor.value = articleToModify.redactor_id;
-          articleModifyForm.elements.textoPortada.value = articleToModify.textoPortada;
-          articleModifyForm.elements.tamano_articulo.value = articleToModify.tamano_articulo;
-        }
-        else{
-          disable_article_modify_controls(true);
-          articleModifyForm.elements.titulo.value = "";
-          articleModifyForm.elements.urlImg.value = "";
-          articleModifyForm.elements.categoria.value = "";
-          articleModifyForm.elements.redactor.value = "";
-          articleModifyForm.elements.textoPortada.value = "";
-          articleModifyForm.elements.tamano_articulo.value = "";
-          spanMessageModify.classList.add('spanMessageError');
-          spanMessageModify.textContent = "No existe un articulo con el ID ingresado";
-        }
+        await populateCategoriesAndWriters_select();
+
+        console.log(articleToModify);
+        if(articleToModify)
+          {
+            disable_article_modify_controls(false);
+            articleModifyForm.elements.titulo.value = articleToModify.titulo;
+            articleModifyForm.elements.urlImg.value = articleToModify.img;
+            articleModifyForm.elements.categoria.value = articleToModify.categoria_id;
+            articleModifyForm.elements.redactor.value = articleToModify.redactor_id;
+            articleModifyForm.elements.textoPortada.value = articleToModify.textoPortada;
+            articleModifyForm.elements.tamano_articulo.value = articleToModify.tamano_articulo;
+          }
+          else{
+            disable_article_modify_controls(true);
+            articleModifyForm.elements.titulo.value = "";
+            articleModifyForm.elements.urlImg.value = "";
+            articleModifyForm.elements.categoria.value = "";
+            articleModifyForm.elements.redactor.value = "";
+            articleModifyForm.elements.textoPortada.value = "";
+            articleModifyForm.elements.tamano_articulo.value = "";
+            spanMessageModify.classList.add('spanMessageError');
+            spanMessageModify.textContent = "No existe un articulo con el ID ingresado";
+          }
+      } catch (error) {
+        if(error.message === "Failed to fetch");
+        spanMessageModify.classList.add('spanMessageError');
+        spanMessageModify.textContent = "Error al realizar la petición";
+      }
+
     }
     else{
       spanMessageModify.classList.add('spanMessageError');
       spanMessageModify.textContent = "Ingrese un valor";
     }
-    console.log(searchInput.value, articleToModify);
 
   });
 

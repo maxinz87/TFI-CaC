@@ -6,7 +6,7 @@ const userRoutes = require('./routes/API/usersRoutes');
 const articlesRoutes = require('./routes/API/articlesRoutes');
 const categoriesRoutes = require('./routes/API/categoriesRoutes');
 
-const puerto = 2408;
+const puerto = process.env.PORT ||2408;
 
 const app = express();
 
