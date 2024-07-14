@@ -11,40 +11,64 @@
 </head>
 <body>
   <div class="crud-container">
-    <h2>CRUD de artículos</h2>
+    <h2 style="text-align: center; margin: 20px;">CRUD de artículos</h2>
     
     <div class="tab">
-      <button class="tablinks" id="openByDefault" onclick="openTab(event, 'crearArticulo')">Agregar</button>
-      <button class="tablinks" onclick="openTab(event, 'modificarArticulo')">Modificar</button>
-      <button class="tablinks" onclick="openTab(event, 'eliminarArticulo')">Eliminar</button>
+      <button class="tablinks" id="buttonCreate">Agregar</button>
+      <button class="tablinks" id="buttonModify">Modificar / Eliminar</button>
     </div>
     
     <div id="crearArticulo" class="tabcontent">
       <h3 class="tituloOperacion">Agregar artículo</h3>
-      <form action="">
-        <label for="">Título</label>
-        <input type="text">
-        <br>
-        <label for="">URL imagen</label>
-        <input type="text">
-        <br>
-        <label for="">Redactor</label>
-        <select name="redactores" id="">
-          <option value="1000">Maximiliano Zapata</option>
-          <option value="1002">Matias Pinto</option>
-          <option value="1005">Victoria Fernandez</option>
-        </select>
+      <div style="display: block;">
+        <span id="span-message-create"></span>
+      </div>
+      <form id="article-create-form">
+        <div class="control-container">
+          <label for="">Título</label>
+          <input name="titulo" type="text">
+        </div>
+        <div class="control-container">
+          <label for="">Categoría</label>
+          <select name="categoria" id="select-categorias">
+          </select>
+        </div>
+        <div class="control-container">
+          <label for="">Redactor</label>
+          <select name="redactor" id="select-redactores">
+  
+          </select>
+        </div>
+        <div class="control-container">
+          <label for="">Enlace imagen</label>
+          <input name="urlImg" type="text">
+        </div>
+        <div class="control-container">
+          <label for="">Texto de Portada</label>
+          <textarea name="textoPortada" id="" rows="5" ></textarea>
+        </div>
+        <div class="control-container">
+          <label for="">Tamaño de articulo</label>
+          <select name="tamano_articulo" id="select-tamano">
+            <option value="xl">Largo</option>
+            <option value="m">Mediano</option>
+            <option value="">Chico</option>
+          </select>
+        </div>
 
-        <label for=""></label>
+        <div class="btnOp-container">
+          <button id="button_create" class="buttonOp">Agregar</button>
+        </div>
       </form>
     </div>
     
     <div id="modificarArticulo" class="tabcontent">
-      <h3 class="tituloOperacion">Actualizar un artículo</h3>
+      <h3 class="tituloOperacion">Modificar/Eliminar un artículo</h3>
       <div id="search-article-container">
-        <div >
-          <input type="text" id="search-input">
+        <div style="position: relative;">
+          <input type="text" id="search-input" placeholder="Ingrese ID de artículo">
           <button id="search-button">Buscar articulo</button>
+          <span class="loader_search"></span>
         </div>
         <div style="display: block;">
           <span id="span-message-modify"></span>
@@ -86,18 +110,18 @@
             </select>
           </div>
   
-          <button id="button_modify">Modificar</button>
+          <div class="btnOp-container">
+            <button id="button_modify" class="buttonOp">Modificar</button>
+            <button id="button_delete" class="buttonOp">Borrar</button>
+          </div>
         </form>
       </div>
     </div>
     
-    <div id="eliminarArticulo" class="tabcontent">
-      <h3>Tokyo</h3>
-      <p>Tokyo is the capital of Japan.</p>
-    </div>
   </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/f8fec4fe05.js" crossorigin="anonymous"></script>
-    <script src="./js/crudCode.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="module" src="./js/crudCode.js"></script>
 </body>
 </html>

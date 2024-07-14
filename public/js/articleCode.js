@@ -1,4 +1,4 @@
-const URL_SERVER = 'https://cac-news.onrender.com/';
+import { URL_SERVER } from "./global.js";
 
 window.onload = async () => {
     const articuloId = new URLSearchParams(window.location.search).get('articleId');
@@ -17,7 +17,7 @@ window.onload = async () => {
 }
 
 async function getNewsById(newsId){
-    newsResponse = await fetch(`${URL_SERVER}api/articulo_por_id/${newsId}`);
-    newsArray = await newsResponse.json();
+    const newsResponse = await fetch(`${URL_SERVER}api/articulo_por_id/${newsId}`);
+    const newsArray = await newsResponse.json();
     return newsArray[0];
 }

@@ -1,6 +1,7 @@
-const URL_SERVER = 'https://cac-news.onrender.com/';
+import { URL_SERVER } from "./global.js";
 
 let economyNewsResponse = [];
+
 
 window.addEventListener("load", async (event) => {
 
@@ -22,8 +23,8 @@ Object.defineProperty(String.prototype, 'capitalizarPrimeraLetra', {
 });
 
 async function getNewsByCategory(categoria){
-    newsResponse = await fetch(`${URL_SERVER}api/articulos/${categoria}`);
-    newsArray = await newsResponse.json();
+    const newsResponse = await fetch(`${URL_SERVER}api/articulos/${categoria}`);
+    const newsArray = await newsResponse.json();
     return newsArray;
 }
 
@@ -55,7 +56,7 @@ function renderArticles(article, category_id){
                 titleArticle.textContent = article.titulo;
 
                 const dataWriterContainer = document.createElement('div');
-                const writerDateArticle = document.createElement('p');
+                const writerDateArticle = document.createElement('span');
                 writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` | ` + article.fecha_creacion.substring(0,10).split('-').reverse().join('/');
                 writerDateArticle.classList.add('writerDateFormat');
                 dataWriterContainer.append(writerDateArticle);
@@ -94,8 +95,8 @@ function renderArticles(article, category_id){
                 titleArticle.textContent = article.titulo;
 
                 const dataWriterContainer = document.createElement('div');
-                const writerDateArticle = document.createElement('p');
-                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                const writerDateArticle = document.createElement('span');
+                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` \t|\t` + article.fecha_creacion.substring(0,10).split('-').reverse().join('/');
                 writerDateArticle.classList.add('writerDateFormat');
                 dataWriterContainer.append(writerDateArticle);
 
@@ -132,8 +133,8 @@ function renderArticles(article, category_id){
                 titleArticle.textContent = article.titulo;
                 
                 const dataWriterContainer = document.createElement('div');
-                const writerDateArticle = document.createElement('p');
-                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` \t|\t` + article.fecha_creacion.substring(0,10);
+                const writerDateArticle = document.createElement('span');
+                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` \t|\t` + article.fecha_creacion.substring(0,10).split('-').reverse().join('/');
                 writerDateArticle.classList.add('writerDateFormat');
                 dataWriterContainer.append(writerDateArticle);
 

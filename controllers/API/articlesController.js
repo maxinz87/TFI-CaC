@@ -58,8 +58,6 @@ const modifyArticleById = (req, res) => {
 
     const {articuloId} = req.params;
 
-    console.log(req.body);
-
     const { img, titulo, textoPortada, tamano_articulo, categoriaId, redactorId} = req.body;
 
     try {

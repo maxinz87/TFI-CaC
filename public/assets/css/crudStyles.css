@@ -32,8 +32,30 @@ label {
   display: block;
 }
 
-.article-container > form > button {
+.btnOp-container {
+  display: flex;
+}
+
+#button_modify, #button_create {
   background-color: rgb(0, 122, 0);
+  display: inline-block;
+}
+
+#button_delete {
+  background-color: rgb(197, 0, 0);
+  display: inline-block;
+}
+
+#button_modify:hover, #button_create:hover {
+  background-color: rgb(0, 95, 21);
+}
+
+#button_delete:hover {
+  background-color: rgb(126, 0, 0);
+}
+
+.buttonOp {
+
   color: #ffffff;
   border-color: #0d0d0d;
   border: none;
@@ -42,15 +64,35 @@ label {
   border-radius: 10px 10px 010px 10px;
   padding-left: 20px;
   width: 100%;
+  margin: 5px;
 }
 
-.article-container > form > button:hover {
-  background-color: rgb(0, 95, 21);
-  cursor: pointer;
+.buttonOp:disabled,
+.buttonOp[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor:default;
 }
 
-.article-container > form > button:disabled,
-.article-container > form > button[disabled]{
+#button_modify:disabled,
+#button_modify[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor:default;
+}
+
+#button_delete:disabled,
+#button_delete[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor:default;
+}
+
+#button_create:disabled,
+#button_create[disabled]{
   border: 1px solid #999999;
   background-color: #cccccc;
   color: #666666;
@@ -130,6 +172,45 @@ label {
   background-color: rgb(23, 74, 168);
 
 }
+
+.loader_search, .loader_search:before, .loader_search:after {
+  border-radius: 50%;
+  width: 2.5em;
+  height: 2.5em;
+  animation-fill-mode: both;
+  animation: bblFadInOut 1.8s infinite ease-in-out;
+}
+.loader_search {
+  color: #FFF;
+  font-size: 3px;
+  position: absolute;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+  left: 372px;
+  top: 15px;
+  display: none;
+}
+.loader_search:before,
+.loader_search:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.loader_search:before {
+  left: -3.5em;
+  animation-delay: -0.32s;
+}
+.loader_search:after {
+  left: 3.5em;
+}
+
+
+@keyframes bblFadInOut {
+  0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
+  40% { box-shadow: 0 2.5em 0 0 }
+}
+
 
 /* Style the tab */
 .tab {

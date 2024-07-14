@@ -162,9 +162,20 @@ main h3 {
     margin-bottom: 20px;
 }
 
-.article-card-xl h3, p {
-    font-size: 2rem;
+.article-card-xl p {
+    font-size: 1.5rem;
     margin: 10px;
+}
+
+.article-card-xl span {
+  font-size: 1rem;
+  margin: 10px;
+}
+
+.article-card-xl h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 3rem;
+  margin: 10px;
 }
 
 .article-card-m {
@@ -177,9 +188,20 @@ main h3 {
     margin-bottom: 20px;
 }
 
-.article-card-m h3, p {
-    font-size: 1.5rem;
+.article-card-m  p {
+    font-size: 1rem;
     margin: 10px;
+}
+
+.article-card-m span {
+  font-size: 1rem;
+  margin: 10px;
+}
+
+.article-card-m h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 2rem;
+  margin: 10px;
 }
 
 .article-card {
@@ -213,9 +235,20 @@ main h3 {
   opacity: 1;
 }
 
-.article-card h3, p {
+.article-card p {
     font-size: 1rem;
     margin: 10px;
+}
+
+.article-card span {
+  font-size: 1rem;
+  margin: 10px;
+}
+
+.article-card h3 {
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.5rem;
+  margin: 10px;
 }
 
 .containerImg{
@@ -234,6 +267,61 @@ main h3 {
     width: 100%;
     top:0;
     bottom:0;
+}
+
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to top, rgba(53, 52, 52, 1) 0%, rgba(53, 52, 52, 0.5) 80%, rgb(13, 13, 13, 1) 100%);
+  padding-top: 40px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  color: #dc3545;
+  font-size: 20px;
+  padding: 10px 40px 40px;
+}
+
+footer h3 {
+  font-size: 16px;
+}
+
+.instagram-social {
+  color: orange;
+}
+
+.instagram-social:hover {
+  color: rgb(255, 206, 114);
+}
+
+.facebook-social {
+  color: rgb(67, 127, 255);
+}
+
+.facebook-social:hover {
+  color: rgb(142, 178, 255);
+}
+
+.twitter-social {
+  color: gray;
+}
+
+.twitter-social:hover {
+  color: rgb(233, 233, 233);
+}
+
+.tiktok-social {
+  color: rgb(180, 0, 0);
+}
+
+.tiktok-social:hover {
+  color: rgb(170, 63, 63);
 }
 
 
@@ -266,6 +354,15 @@ main h3 {
 
     .article-card-m {
         grid-column-start: span 2; 
+    }
+
+    .footer-content {
+      width: 400px !important;
+      font-size: 40px !important;
+    }
+  
+    footer h3 {
+      font-size: 24px !important;
     }
 }
 
