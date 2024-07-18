@@ -2,6 +2,15 @@ import { URL_SERVER } from "./global.js";
 
 let economyNewsResponse = [];
 
+window.onload = () => {
+    setTimeout(()=>{
+        if(window.location.hash){
+            window.location.href=window.location.hash;
+        }
+    },1500);
+
+}
+
 
 window.addEventListener("load", async (event) => {
 
