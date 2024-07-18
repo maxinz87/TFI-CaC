@@ -10,7 +10,7 @@ window.onload = async () => {
     const articuloTextoPortada = document.querySelector('.textoPortadaArticulo');
 
     console.log(articuloData);
-
+    document.title=articuloData.titulo;
     articuloImg.setAttribute("src",articuloData.img);
     articuloTitulo.textContent = articuloData.titulo;
     articuloTextoPortada.textContent = articuloData.textoPortada;
