@@ -1,5 +1,5 @@
 import { URL_SERVER } from "./global.js";
-
+import { quill } from "./crudTextEditorCode.js";
 
 
 let articleToModify = undefined;
@@ -75,7 +75,7 @@ async function createNewArticle(form_querySelector){
       tamano_articulo: form_querySelector.elements.tamano_articulo.value,
       img: form_querySelector.elements.urlImg.value,
       epigrafe: "",
-      textoCompleto: "",
+      textoCompleto: quill.getSemanticHTML(),
       posicion_articulo: ""
     })
   });
@@ -199,6 +199,8 @@ async function populateCategoriesAndWriters_select(idForm){
     e.preventDefault();
     let createFlag = true;
 
+    console.log(quill.getSemanticHTML());
+
     spanMessageCreate.innerHTML = "";
     spanMessageCreate.classList.remove('spanMessageError');
     if(articleCreateForm.elements.titulo.value.trim() === ""){
@@ -214,7 +216,13 @@ async function populateCategoriesAndWriters_select(idForm){
     }
 
     if(articleCreateForm.elements.textoPortada.value.trim() === ""){
-      spanMessageCreate.innerHTML = spanMessageCreate.innerHTML + "-> falta agregar texto de portada";
+      spanMessageCreate.innerHTML = spanMessageCreate.innerHTML + "-> falta agregar texto de portada<br>";
+      spanMessageCreate.classList.add('spanMessageError');
+      createFlag = false;
+    }
+
+    if(quill.getSemanticHTML().trim() === "<p></p>"){
+      spanMessageCreate.innerHTML = spanMessageCreate.innerHTML + "-> falta agregar el cuerpo del artículo";
       spanMessageCreate.classList.add('spanMessageError');
       createFlag = false;
     }
@@ -233,6 +241,7 @@ async function populateCategoriesAndWriters_select(idForm){
           articleCreateForm.elements.titulo.value = "";
           articleCreateForm.elements.urlImg.value = "";
           articleCreateForm.elements.textoPortada.value = "";
+          quill.setText('');
 
         }
       } catch (error) {

@@ -22,7 +22,10 @@
     max-width: 700px;
   }
 
-
+.cuerpoArticulo p img{
+  display:block;
+  margin: auto;
+}
 
 
 

@@ -9,12 +9,69 @@ label {
 }
 
 .crud-container{
-  width: 500px;
+  width: auto;
 }
 
 .article-container{
   padding: 20px;
 }
+
+.form-controls-container{
+  display: flex;
+}
+
+.controls-container{
+  margin:10px;
+}
+
+.text-editor-content {
+  width: 800px;
+  height: 450px;
+  padding-bottom: 42.84px;
+  color: white;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+#editor, .ql-toolbar{
+  background: #ddd;
+  color: black;
+}
+
+/*
+.toolbar button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  margin-right: 5px;
+  color:rgb(253, 232, 203);
+  padding: 10px;
+}
+
+.toolbar button:hover {
+  color:rgb(255, 179, 37);
+  cursor:default;
+  background-color: #242424;
+}
+
+.text-editor-box{
+  background-color: aliceblue;
+  position: relative;
+  height: 500px;
+  width: 100%;
+  color: black;
+  padding: 10px;
+  overflow-y: scroll;
+}
+
+.text-editor-box:empty{
+  background: rgb(0, 72, 136);
+  height: 100%;
+  width: 100%;
+  color: black;
+}
+
+*/
 
 .control-container{
   margin-bottom: 20px;

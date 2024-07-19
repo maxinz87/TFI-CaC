@@ -8,12 +8,18 @@ window.onload = async () => {
     const articuloImg = document.querySelector('.imgArticulo');
     const articuloTitulo = document.querySelector('.tituloArticulo');
     const articuloTextoPortada = document.querySelector('.textoPortadaArticulo');
+    const cuerpoArticulo = document.querySelector('.cuerpoArticulo');
 
     console.log(articuloData);
     document.title=articuloData.titulo;
     articuloImg.setAttribute("src",articuloData.img);
     articuloTitulo.textContent = articuloData.titulo;
     articuloTextoPortada.textContent = articuloData.textoPortada;
+    cuerpoArticulo.innerHTML = articuloData.textoCompleto;
+
+    const loaderElement = document.querySelector('.loader');
+
+    loaderElement.classList.add('loader-hidden');
 }
 
 async function getNewsById(newsId){
