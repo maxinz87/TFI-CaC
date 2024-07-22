@@ -9,7 +9,7 @@ window.addEventListener("load", async (event) => {
         if(window.location.hash){
             window.location.href=window.location.hash;
         }
-    },1500);
+    },2000);
 
     const loaderElement = document.querySelector('.loader');
 
