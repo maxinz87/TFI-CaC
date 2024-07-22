@@ -16,6 +16,7 @@ window.addEventListener("load", async (event) => {
     await populateArticles(3);
     await populateArticles(4);
     await populateArticles(5);
+    await populateArticles(6);
 
     loaderElement.classList.add('loader-hidden');
   });
@@ -154,6 +155,43 @@ function renderArticles(article, category_id){
                 techArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle, articleLink);
             
                 techArticles_Container.append(techArticleContainer);
+            }
+            break;
+            case 6:{
+                const cultureArticles_Container = document.querySelector('.culture-articles-container');
+                const cultureArticleContainer = document.createElement('article');
+
+                if(article.tamano_articulo !== "")
+                    cultureArticleContainer.classList.add(`article-card-${article.tamano_articulo}`);
+                else
+                    cultureArticleContainer.classList.add(`article-card`);
+            
+                const imgArticleContainer = document.createElement('div');
+                imgArticleContainer.classList.add('containerImg');
+                const imgElement = document.createElement('img');
+                imgElement.setAttribute("src", article.img);
+                
+                imgArticleContainer.append(imgElement);
+            
+                const titleArticle = document.createElement('h3');
+                titleArticle.textContent = article.titulo;
+                
+                const dataWriterContainer = document.createElement('div');
+                const writerDateArticle = document.createElement('span');
+                writerDateArticle.textContent = article.nombre.capitalizarPrimeraLetra() + " " + article.apellido.capitalizarPrimeraLetra() + ` \t|\t` + article.fecha_creacion.substring(0,10).split('-').reverse().join('/');
+                writerDateArticle.classList.add('writerDateFormat');
+                dataWriterContainer.append(writerDateArticle);
+
+                const textArticle = document.createElement('p');
+                textArticle.textContent = article.textoPortada;
+
+                const articleLink = document.createElement('a');
+                articleLink.classList.add('article-link');
+                articleLink.setAttribute('href','/articulo.html?articleId=' + article.id);
+            
+                cultureArticleContainer.append(imgArticleContainer,titleArticle,dataWriterContainer,textArticle, articleLink);
+            
+                cultureArticles_Container.append(cultureArticleContainer);
             }
             break;
         default:

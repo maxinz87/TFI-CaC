@@ -19,6 +19,8 @@ const getLatestArticlesByCategory = (req, res) => {
 const getArticleById = (req, res) => {
 
     const {articuloId} = req.params;
+
+    console.log("en getArticleById...");
     
     try {
         db.query('SELECT articulos.id, redactor_id, nombre, apellido, fecha_creacion, img, titulo, epigrafe, textoPortada, textoCompleto, tamano_articulo, categoria_id FROM articulos INNER JOIN usuarios ON articulos.redactor_id = usuarios.id WHERE articulos.id = ?',
@@ -58,12 +60,15 @@ const modifyArticleById = (req, res) => {
 
     const {articuloId} = req.params;
 
-    const { img, titulo, textoPortada, tamano_articulo, categoriaId, redactorId} = req.body;
+    console.log(req.body);
+    const { img, titulo, textoPortada, tamano_articulo, categoriaId, redactorId, textoCompleto} = req.body;
+
+    console.log("en API modifyArticleById");
 
     try {
         
-        db.query('UPDATE articulos SET img = ?, titulo = ?, textoPortada = ?, tamano_articulo = ?, categoria_id = ?, redactor_id = ? WHERE id = ?',
-                [img, titulo, textoPortada, tamano_articulo, categoriaId, redactorId, articuloId],
+        db.query('UPDATE articulos SET img = ?, titulo = ?, textoPortada = ?, tamano_articulo = ?, categoria_id = ?, redactor_id = ?, textoCompleto = ? WHERE id = ?',
+                [img, titulo, textoPortada, tamano_articulo, categoriaId, redactorId, textoCompleto, articuloId],
                 (err, rows) => {
                     if(err)
                         return res.status(400).json({ error: err});

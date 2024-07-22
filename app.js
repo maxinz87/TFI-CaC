@@ -1,7 +1,9 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const morgan = require('morgan');
 require('dotenv/config');
+
 
 const userRoutes = require('./routes/API/usersRoutes');
 const articlesRoutes = require('./routes/API/articlesRoutes');
@@ -13,6 +15,7 @@ const app = express();
 
 const apiDir = '/api';
 
+app.use(morgan('dev'));
 app.use(cors());
 /*
 app.use(cors({

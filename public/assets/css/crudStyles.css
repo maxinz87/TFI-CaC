@@ -26,14 +26,14 @@ label {
 
 .text-editor-content {
   width: 800px;
-  height: 450px;
+  height: 500px;
   padding-bottom: 42.84px;
   color: white;
   margin-left: 10px;
   margin-top: 10px;
 }
 
-#editor, .ql-toolbar{
+#editor, #editor-modify, .ql-toolbar{
   background: #ddd;
   color: black;
 }
@@ -313,4 +313,11 @@ label {
   @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .text-editor-content {
+      width: 400px;
+    }
   }

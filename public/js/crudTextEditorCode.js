@@ -18,16 +18,6 @@ window.addEventListener('load', () => {
 });
 
 
-const botonPrueba = document.querySelector('.botonPrueba');
-
-botonPrueba.addEventListener('click', (e)=> {
-    e.preventDefault();
-    cuerpoArticulo = quill.getSemanticHTML();
-    console.log(cuerpoArticulo);
-    
-});
-
-
 function imageHandler() {
     const range = this.quill.getSelection();
     const value = prompt('Inserte debajo el vínculo de la imagen.');
@@ -40,7 +30,7 @@ export const quill = new Quill('#editor', {
     theme: 'snow',
     modules: {
         toolbar: {
-            container: [[{ 'size': ['small', false, 'large', 'huge'] }],['bold','italic','underline','strike','link','image'],[{ 'header': 1 }, { 'header': 2 }]],
+            container: [[{ 'size': ['small', false, 'large', 'huge'] }],['bold','italic','underline','strike','link','image']],
             handlers: {
                 image: imageHandler
             }
@@ -48,3 +38,16 @@ export const quill = new Quill('#editor', {
     },
     placeholder: 'Escriba el artículo aquí.'
   });
+
+export const quillModify = new Quill('#editor-modify', {
+    theme: 'snow',
+    modules: {
+        toolbar: {
+            container: [[{ 'size': ['small', false, 'large', 'huge'] }],['bold','italic','underline','strike','link','image']],
+            handlers: {
+                image: imageHandler
+            }
+        }
+    },
+    placeholder: 'Escriba el artículo aquí.'
+});

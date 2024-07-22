@@ -87,7 +87,6 @@
         </div>
         <div class="btnOp-container">
           <button id="button_create" class="buttonOp">Agregar</button>
-          <button class="botonPrueba">ver codigo en consola</button>
         </div>
       </form>
     </div>
@@ -108,37 +107,49 @@
       <div class="article-container">
         <h4>Artículo</h4>
         <form id="article-modify-form">
-          <div class="control-container">
-            <label for="">Título</label>
-            <input name="titulo" value="dasadas" type="text">
+        <div class="form-controls-container">
+
+          <div class="controls-container">
+
+            <div class="control-container">
+              <label for="">Título</label>
+              <input name="titulo" value="dasadas" type="text">
+            </div>
+            <div class="control-container">
+              <label for="">Categoría</label>
+              <select name="categoria" id="select-categorias">
+              </select>
+            </div>
+            <div class="control-container">
+              <label for="">Redactor</label>
+              <select name="redactor" id="select-redactores">
+      
+              </select>
+            </div>
+            <div class="control-container">
+              <label for="">Enlace imagen</label>
+              <input name="urlImg" type="text">
+            </div>
+            <div class="control-container">
+              <label for="">Texto de Portada</label>
+              <textarea name="textoPortada" id="" rows="5" ></textarea>
+            </div>
+            <div class="control-container">
+              <label for="">Tamaño de articulo</label>
+              <select name="tamano_articulo" id="select-tamano">
+                <option value="xl">Largo</option>
+                <option value="m">Mediano</option>
+                <option value="">Chico</option>
+              </select>
+            </div>
+
           </div>
-          <div class="control-container">
-            <label for="">Categoría</label>
-            <select name="categoria" id="select-categorias">
-            </select>
+          <div class="text-editor-content">
+            <label for="">Editor de artículo</label>
+            <div id="editor-modify">
+            </div>
           </div>
-          <div class="control-container">
-            <label for="">Redactor</label>
-            <select name="redactor" id="select-redactores">
-    
-            </select>
-          </div>
-          <div class="control-container">
-            <label for="">Enlace imagen</label>
-            <input name="urlImg" type="text">
-          </div>
-          <div class="control-container">
-            <label for="">Texto de Portada</label>
-            <textarea name="textoPortada" id="" rows="5" ></textarea>
-          </div>
-          <div class="control-container">
-            <label for="">Tamaño de articulo</label>
-            <select name="tamano_articulo" id="select-tamano">
-              <option value="xl">Largo</option>
-              <option value="m">Mediano</option>
-              <option value="">Chico</option>
-            </select>
-          </div>
+        </div>
   
           <div class="btnOp-container">
             <button id="button_modify" class="buttonOp">Modificar</button>

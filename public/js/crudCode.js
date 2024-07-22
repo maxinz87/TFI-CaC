@@ -1,5 +1,5 @@
 import { URL_SERVER } from "./global.js";
-import { quill } from "./crudTextEditorCode.js";
+import { quill, quillModify } from "./crudTextEditorCode.js";
 
 
 let articleToModify = undefined;
@@ -111,6 +111,7 @@ async function deleteArticleByID(article_id){
     articleModifyForm.tamano_articulo.disabled = valor;
     articleModifyForm.button_modify.disabled = valor;
     articleModifyForm.button_delete.disabled = valor;
+    quillModify.enable(!valor);
   }
 
 async function populateCategoriesAndWriters_select(idForm){
@@ -164,8 +165,10 @@ async function populateCategoriesAndWriters_select(idForm){
             articleModifyForm.elements.redactor.value = articleToModify.redactor_id;
             articleModifyForm.elements.textoPortada.value = articleToModify.textoPortada;
             articleModifyForm.elements.tamano_articulo.value = articleToModify.tamano_articulo;
+            quillModify.clipboard.dangerouslyPasteHTML(articleToModify.textoCompleto);
           }
           else{
+            quillModify.setText('\n');
             disable_article_modify_controls(true);
             articleModifyForm.elements.titulo.value = "";
             articleModifyForm.elements.urlImg.value = "";
@@ -198,8 +201,6 @@ async function populateCategoriesAndWriters_select(idForm){
   buttonCreate.addEventListener("click", async (e) => {
     e.preventDefault();
     let createFlag = true;
-
-    console.log(quill.getSemanticHTML());
 
     spanMessageCreate.innerHTML = "";
     spanMessageCreate.classList.remove('spanMessageError');
@@ -255,6 +256,7 @@ async function populateCategoriesAndWriters_select(idForm){
 
   buttonModify.addEventListener("click", async (e) => {
     e.preventDefault();
+    console.log(quillModify.getSemanticHTML());
     const res = await fetch(`${URL_SERVER}api/modificar_articulo_por_id/${articleToModify.id}`, {
       method: 'PUT',
       headers: {
@@ -266,13 +268,17 @@ async function populateCategoriesAndWriters_select(idForm){
         categoriaId : articleModifyForm.elements.categoria.value,
         redactorId : articleModifyForm.elements.redactor.value,
         textoPortada : articleModifyForm.elements.textoPortada.value,
-        tamano_articulo : (articleModifyForm.elements.tamano_articulo.value)
+        textoCompleto: quillModify.getSemanticHTML(),
+        tamano_articulo : articleModifyForm.elements.tamano_articulo.value,
+
       })
     });
 
     const res_json = await res.json();
 
-    if(res_json.resultado.affectedRows === 1)
+    console.log(res_json.resultado);
+
+    if(res_json.resultado.changedRows === 1)
     {
       spanMessageModify.classList.add('spanMessageOK');
       spanMessageModify.textContent = "Se ha modificado el artículo!"
